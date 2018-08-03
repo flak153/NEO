@@ -6,7 +6,7 @@ url = "http://neocrisis.xyz/telescope/"
 
 def get_positions():
     objects = []
-    for x in range(1 , 9):
+    for x in range(1, 9):
         response = requests.get(url+str(x))
         loaded = json.loads(response.text)
         for obj in loaded['objects']:
@@ -14,11 +14,15 @@ def get_positions():
                 objects.append(tuple((obj["name"], obj["obs_time"], obj["pos"])))
     return objects
 
-first = sorted(get_positions())
-second = sorted(get_positions())
 
-print(first)
-print(second)
-zipped = zip(first, second)
+def get_zipped():
+    first = sorted(get_positions())
+    second = sorted(get_positions())
 
-print(json.dumps(list(zipped), indent= 2))
+    print(first)
+    print(second)
+    zipped = zip(first, second)
+
+    #print(json.dumps(list(zipped), indent= 2))
+
+    return zipped
